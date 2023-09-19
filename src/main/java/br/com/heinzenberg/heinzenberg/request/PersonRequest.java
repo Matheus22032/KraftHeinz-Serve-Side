@@ -1,9 +1,11 @@
-package br.com.heinzenberg.heinzenberg;
+package br.com.heinzenberg.heinzenberg.request;
+
+import br.com.heinzenberg.heinzenberg.entities.Question;
 
 import java.util.List;
 
 
-public class Person {
+public class PersonRequest {
     private String name;
     private String local;
 
@@ -11,7 +13,7 @@ public class Person {
     private List<Question> questions;
     private String comment;
 
-    public Person(String name, String local, String email, List<Question> questions, String comment) {
+    public PersonRequest(String name, String local, String email, List<Question> questions, String comment) {
         this.name = name;
         this.local = local;
         this.email = email;

@@ -1,4 +1,4 @@
-package br.com.heinzenberg.heinzenberg;
+package br.com.heinzenberg.heinzenberg.entities;
 
 public class QuestionEnum extends Question {
     private enum ResultSet{

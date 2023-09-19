@@ -1,4 +1,4 @@
-package br.com.heinzenberg.heinzenberg;
+package br.com.heinzenberg.heinzenberg.entities;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

@@ -1,4 +1,4 @@
-package br.com.heinzenberg.heinzenberg;
+package br.com.heinzenberg.heinzenberg.entities;
 
 public class QuestionInt extends Question{
     private int ranger;
