@@ -18,10 +18,10 @@ public class PersonRepository {
     public PersonRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    public void save(PersonRequest personRequest){
-        Person person = new Person(personRequest);
+
+    public void save(Person person) {
         jdbcTemplate.update(sqlPerson, person.getPersonId().toString(), person.getName(), person.getLocal(), person.getEmail(), 1);
-        if (personRequest.getComment() != null) {
+        if (person.getComment() != null) {
             jdbcTemplate.update(sqlComment, UUID.randomUUID().toString(), person.getComment(), person.getPersonId().toString());
         }
 
