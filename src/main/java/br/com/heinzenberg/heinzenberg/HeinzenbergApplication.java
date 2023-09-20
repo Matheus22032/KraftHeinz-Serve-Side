@@ -1,4 +1,4 @@
-package br.com.heinzenberg.heinzenberg.app;
+package br.com.heinzenberg.heinzenberg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
