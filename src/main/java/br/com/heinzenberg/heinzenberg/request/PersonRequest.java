@@ -1,6 +1,6 @@
 package br.com.heinzenberg.heinzenberg.request;
 
-import br.com.heinzenberg.heinzenberg.entities.Question;
+import br.com.heinzenberg.heinzenberg.entities.Answer;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ public class PersonRequest {
     private String local;
 
     private String email;
-    private List<Question> questions;
+    private List<Answer> questions;
     private String comment;
 
-    public PersonRequest(String name, String local, String email, List<Question> questions, String comment) {
+    public PersonRequest(String name, String local, String email, List<Answer> questions, String comment) {
         this.name = name;
         this.local = local;
         this.email = email;
@@ -45,11 +45,11 @@ public class PersonRequest {
         this.email = email;
     }
 
-    public List<Question> getQuestions() {
+    public List<Answer> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<Answer> questions) {
         this.questions = questions;
     }
 
