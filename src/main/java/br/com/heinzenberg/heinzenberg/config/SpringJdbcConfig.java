@@ -17,8 +17,8 @@ public class SpringJdbcConfig extends AbstractJdbcConfiguration {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
         dataSource.setUrl("jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL");
-        dataSource.setUsername("rm96166");
-        dataSource.setPassword("071203");
+        dataSource.setUsername(System.getenv("USERNAME"));
+        dataSource.setPassword(System.getenv("PASSWORD"));
         return dataSource;
     }
 
