@@ -19,17 +19,28 @@ public class AnswerRepository {
     }
 
     public void saveAnswer(Answer answer, String id){
-        if (answer.getResult() == Answer.ResultSet.NÃO_TENHO_CERTEZA || answer.getResult() == null) {
+
+        if (answer.getResult() == null) {
             jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), null, id);
             return;
         }
-        if (answer.getResult() == Answer.ResultSet.NÃO) {
-            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), false, id);
-            return;
-        }
-        if (answer.getResult() == Answer.ResultSet.SIM) {
-            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), true, id);
-        }
+
+        jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(),
+                answer.getRanger(),
+                answer.Id(),
+                answer.getResult().toString(),
+                id);
+//        if (answer.getResult() == Answer.ResultSet.NÃO_TENHO_CERTEZA || answer.getResult() == null) {
+//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), null, id);
+//            return;
+//        }
+//        if (answer.getResult() == Answer.ResultSet.NÃO) {
+//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), false, id);
+//            return;
+//        }
+//        if (answer.getResult() == Answer.ResultSet.SIM) {
+//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), true, id);
+//        }
     }
     public PersonRequest requestAnswer(String id, PersonRequest personRequest){
         jdbcTemplate.query(sqlSelectAnswer, (rs) -> {
@@ -39,7 +50,7 @@ public class AnswerRepository {
 //                }
                 Answer answer = new Answer(UUID.fromString(rs.getString("answer_id")),
                         rs.getInt("answer_range"),
-                        rs.getBoolean("answer_yes_idk") ? Answer.ResultSet.SIM : Answer.ResultSet.NÃO,
+                        rs.getString("answer_yes_idk") == null ? null : Answer.ResultSet.valueOf(rs.getString("answer_yes_idk")),
                         rs.getString("tb_question_question_id"));
                 personRequest.getQuestions().add(answer);
             }while (rs.next());
