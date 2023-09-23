@@ -1,7 +1,7 @@
-package br.com.heinzenberg.heinzenberg.request;
+package br.com.heinzenberg.heinzenberg.entities;
 
-import br.com.heinzenberg.heinzenberg.entities.Answer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -10,6 +10,7 @@ public class PersonRequest {
     private String local;
 
     private String email;
+
     private List<Answer> questions;
     private String comment;
 
@@ -19,6 +20,17 @@ public class PersonRequest {
         this.email = email;
         this.questions = questions;
         this.comment = comment;
+    }
+    public PersonRequest(){
+        this.questions = new ArrayList<>();
+    }
+
+    public PersonRequest(Person person){
+        this.name = person.getName();
+        this.local = person.getLocal();
+        this.email = person.getEmail();
+        this.comment = person.getComment();
+        this.questions = new ArrayList<>();
     }
 
     public String getName() {
