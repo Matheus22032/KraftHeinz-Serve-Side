@@ -20,15 +20,15 @@ public class AnswerRepository {
 
     public void saveAnswer(Answer answer, String id){
         if (answer.getResult() == Answer.ResultSet.NÃO_TENHO_CERTEZA || answer.getResult() == null) {
-            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.getQuestionId(), null, id);
+            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), null, id);
             return;
         }
         if (answer.getResult() == Answer.ResultSet.NÃO) {
-            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.getQuestionId(), false, id);
+            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), false, id);
             return;
         }
         if (answer.getResult() == Answer.ResultSet.SIM) {
-            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.getQuestionId(), true, id);
+            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), true, id);
         }
     }
     public PersonRequest requestAnswer(String id, PersonRequest personRequest){
