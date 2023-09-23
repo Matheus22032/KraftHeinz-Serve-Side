@@ -1,5 +1,8 @@
 package br.com.heinzenberg.heinzenberg.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public  class Answer {
@@ -10,33 +13,43 @@ public  class Answer {
     private int ranger;
     private ResultSet result;
 
-    private String questionId;
+    private String Id;
 
     public Answer( int ranger, ResultSet result, String questionId) {
         this.answerId = UUID.randomUUID();
         this.ranger = ranger;
         this.result = result;
-        this.questionId = questionId;
+        this.Id = questionId;
     }
 
-    public Answer(UUID answerId, int ranger, ResultSet result, String questionId) {
+    public Answer(UUID answerId, int ranger, ResultSet result, String Id) {
         this.answerId = answerId;
         this.ranger = ranger;
         this.result = result;
-        this.questionId = questionId;
+        this.Id = Id;
     }
 
+    @JsonCreator
+    public Answer(@JsonProperty("id") String Id, @JsonProperty("result") ResultSet result) {
+        this.answerId = UUID.randomUUID();
+        this.result = result;
+        this.Id = Id;
+    }
 
     public void setRanger(int ranger) {
         this.ranger = ranger;
     }
 
-    public String getQuestionId() {
-        return questionId;
+    public String Id() {
+        return Id;
     }
 
     public void setResult(ResultSet result) {
         this.result = result;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.Id = questionId;
     }
 
     public UUID getAnswerId() {
@@ -49,5 +62,15 @@ public  class Answer {
 
     public ResultSet getResult() {
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "answerId=" + answerId +
+                ", ranger=" + ranger +
+                ", result=" + result +
+                ", questionId='" + Id + '\'' +
+                '}';
     }
 }
