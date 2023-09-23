@@ -1,7 +1,5 @@
 package br.com.heinzenberg.heinzenberg.entities;
 
-import br.com.heinzenberg.heinzenberg.request.PersonRequest;
-
 import java.util.UUID;
 
 public class Person {
@@ -17,6 +15,22 @@ public class Person {
         this.email = personRequest.getEmail();
         this.comment = personRequest.getComment();
         this.personId = UUID.randomUUID();
+    }
+
+    public Person(){
+
+    }
+
+    public Person(String name, String local, String email,String comment, UUID personId) {
+        this.name = name;
+        this.local = local;
+        this.email = email;
+        this.personId = personId;
+        this.comment = comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public UUID getPersonId() {
@@ -37,5 +51,16 @@ public class Person {
 
     public String getComment() {
         return comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", name='" + name + '\'' +
+                ", local='" + local + '\'' +
+                ", email='" + email + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }
