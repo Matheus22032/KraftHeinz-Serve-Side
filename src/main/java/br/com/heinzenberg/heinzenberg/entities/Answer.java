@@ -7,23 +7,32 @@ public  class Answer {
         SIM, NÃO, NÃO_TENHO_CERTEZA
     }
     private UUID answerId;
-    private int id;
     private int ranger;
     private ResultSet result;
 
-    public Answer(int id, int ranger, ResultSet result) {
-        this.id = id;
+    private String questionId;
+
+    public Answer( int ranger, ResultSet result, String questionId) {
+        this.answerId = UUID.randomUUID();
         this.ranger = ranger;
         this.result = result;
-        this.answerId = UUID.randomUUID();
+        this.questionId = questionId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Answer(UUID answerId, int ranger, ResultSet result, String questionId) {
+        this.answerId = answerId;
+        this.ranger = ranger;
+        this.result = result;
+        this.questionId = questionId;
     }
+
 
     public void setRanger(int ranger) {
         this.ranger = ranger;
+    }
+
+    public String getQuestionId() {
+        return questionId;
     }
 
     public void setResult(ResultSet result) {
@@ -32,10 +41,6 @@ public  class Answer {
 
     public UUID getAnswerId() {
         return answerId;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getRanger() {
