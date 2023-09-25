@@ -34,13 +34,11 @@ public class FeedbackController {
     }
 
     @GetMapping("/person")
-    @ResponseBody
     public List<Person> responsePerson(){
         return personRepository.findAll();
     }
 
     @GetMapping("/person/{id}")
-    @ResponseBody
     public PersonRequest responsePerson(@PathVariable String id){
         Person person = personRepository.findById(id);
         if (person == null){

@@ -26,29 +26,22 @@ public class PersonRepository {
     }
 
     public List<Person> findAll() {
-        List<Person> personList = new ArrayList<>();
-        jdbcTemplate.query(sqlSelectPerson, (rs) -> {
-            do {
-                Person person = new Person(rs.getString("name_person"),
-                        rs.getString("local_person"),
-                        rs.getString("email"),
-                        rs.getString("comment_person"),
-                        UUID.fromString(rs.getString("person_id")));
-                personList.add(person);
-            }while (rs.next());
-        });
-
+        List<Person> personList = jdbcTemplate.query(sqlSelectPerson, (rs, rowNum) -> new Person(rs.getString("name_person"),
+                rs.getString("local_person"),
+                rs.getString("email"),
+                rs.getString("comment_person"),
+                UUID.fromString(rs.getString("person_id"))));
         return personList;
     }
 
     public Person findById(String id) {
         AtomicReference<Person> person = new AtomicReference<>(new Person());
         jdbcTemplate.query(sqlSelectPersonById, (rs) -> {
-                person.set(new Person(rs.getString("name_person"),
-                        rs.getString("local_person"),
-                        rs.getString("email"),
-                        rs.getString("comment_person"),
-                        UUID.fromString(rs.getString("person_id"))));
+            person.set(new Person(rs.getString("name_person"),
+                    rs.getString("local_person"),
+                    rs.getString("email"),
+                    rs.getString("comment_person"),
+                    UUID.fromString(rs.getString("person_id"))));
         }, id);
 
         return person.get();
