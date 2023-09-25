@@ -6,23 +6,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public  class Answer {
-    public enum ResultSet{
+    public enum AnswerSet {
         SIM, NÃO, NÃO_TENHO_CERTEZA
     }
     private UUID answerId;
     private int ranger;
-    private ResultSet result;
+    private AnswerSet result;
 
     private String Id;
 
-    public Answer( int ranger, ResultSet result, String questionId) {
+    public Answer(int ranger, AnswerSet result, String questionId) {
         this.answerId = UUID.randomUUID();
         this.ranger = ranger;
         this.result = result;
         this.Id = questionId;
     }
 
-    public Answer(UUID answerId, int ranger, ResultSet result, String Id) {
+    public Answer(UUID answerId, int ranger, AnswerSet result, String Id) {
         this.answerId = answerId;
         this.ranger = ranger;
         this.result = result;
@@ -30,7 +30,7 @@ public  class Answer {
     }
 
     @JsonCreator
-    public Answer(@JsonProperty("id") String Id, @JsonProperty("result") ResultSet result) {
+    public Answer(@JsonProperty("id") String Id, @JsonProperty("result") AnswerSet result) {
         this.answerId = UUID.randomUUID();
         this.result = result;
         this.Id = Id;
@@ -44,7 +44,7 @@ public  class Answer {
         return Id;
     }
 
-    public void setResult(ResultSet result) {
+    public void setResult(AnswerSet result) {
         this.result = result;
     }
 
@@ -60,7 +60,7 @@ public  class Answer {
         return ranger;
     }
 
-    public ResultSet getResult() {
+    public AnswerSet getResult() {
         return result;
     }
 
