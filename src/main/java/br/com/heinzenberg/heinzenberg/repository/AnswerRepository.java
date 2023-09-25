@@ -30,27 +30,13 @@ public class AnswerRepository {
                 answer.Id(),
                 answer.getResult().toString(),
                 id);
-//        if (answer.getResult() == Answer.ResultSet.NÃO_TENHO_CERTEZA || answer.getResult() == null) {
-//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), null, id);
-//            return;
-//        }
-//        if (answer.getResult() == Answer.ResultSet.NÃO) {
-//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), false, id);
-//            return;
-//        }
-//        if (answer.getResult() == Answer.ResultSet.SIM) {
-//            jdbcTemplate.update(sqlAnswer, answer.getAnswerId().toString(), answer.getRanger(), answer.Id(), true, id);
-//        }
     }
     public PersonRequest requestAnswer(String id, PersonRequest personRequest){
         jdbcTemplate.query(sqlSelectAnswer, (rs) -> {
             do {
-//                if (rs.getBoolean("answer_yes_idk") && (rs.getInt("tb_question_question_id") == 2|| rs.getInt("tb_question_question_id") == 3)){
-//
-//                }
                 Answer answer = new Answer(UUID.fromString(rs.getString("answer_id")),
                         rs.getInt("answer_range"),
-                        rs.getString("answer_yes_idk") == null ? null : Answer.ResultSet.valueOf(rs.getString("answer_yes_idk")),
+                        rs.getString("answer_yes_idk") == null ? null : Answer.AnswerSet.valueOf(rs.getString("answer_yes_idk")),
                         rs.getString("tb_question_question_id"));
                 personRequest.getQuestions().add(answer);
             }while (rs.next());
