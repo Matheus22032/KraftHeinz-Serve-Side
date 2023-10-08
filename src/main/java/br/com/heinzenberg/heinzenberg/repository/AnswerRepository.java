@@ -13,6 +13,7 @@ public class AnswerRepository {
 
     private final String sqlAnswer = "INSERT INTO tb_answer (answer_id, answer_range, tb_question_question_id, answer_yes_idk, person_id_fk) VALUES (?, ?, ?,?,?)";
     private final String sqlSelectAnswer = "SELECT * FROM tb_answer where person_id_fk = ? order by tb_question_question_id";
+    private final String sqlDeleteAnswer = "DELETE FROM tb_answer WHERE person_id_fk = ?";
 
     public AnswerRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -42,5 +43,8 @@ public class AnswerRepository {
             }while (rs.next());
         }, id);
         return personRequest;
+    }
+    public void deleteAnswer(String id){
+        jdbcTemplate.update(sqlDeleteAnswer, id);
     }
 }

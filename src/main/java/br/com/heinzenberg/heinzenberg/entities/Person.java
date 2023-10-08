@@ -8,6 +8,10 @@ public class Person {
     private String local;
     private String email;
     private String comment;
+    private boolean feedback;
+    private String typeEsg;
+    private boolean Answered;
+
 
     public Person (PersonRequest personRequest){
         this.name = personRequest.getName();
@@ -21,12 +25,15 @@ public class Person {
 
     }
 
-    public Person(String name, String local, String email,String comment, UUID personId) {
+    public Person(String name, String local, String email,String comment, UUID personId, boolean feedback, String typeEsg, boolean answered) {
         this.name = name;
         this.local = local;
         this.email = email;
         this.personId = personId;
         this.comment = comment;
+        this.Answered = answered;
+        this.feedback = feedback;
+        this.typeEsg = typeEsg;
     }
 
     public void setComment(String comment) {
@@ -51,6 +58,18 @@ public class Person {
 
     public String getComment() {
         return comment;
+    }
+
+    public boolean isFeedback() {
+        return feedback;
+    }
+
+    public String getTypeEsg() {
+        return typeEsg;
+    }
+
+    public boolean isAnswered() {
+        return Answered;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.heinzenberg.heinzenberg.controller;
 
 import br.com.heinzenberg.heinzenberg.entities.Person;
+import br.com.heinzenberg.heinzenberg.entities.UpdatePerson;
 import br.com.heinzenberg.heinzenberg.repository.AnswerRepository;
 import br.com.heinzenberg.heinzenberg.repository.PersonRepository;
 import br.com.heinzenberg.heinzenberg.entities.PersonRequest;
@@ -46,6 +47,18 @@ public class FeedbackController {
         }
         PersonRequest personRequest = new PersonRequest(person);
         return answerRepository.requestAnswer(id, personRequest);
+    }
+    @DeleteMapping("/person/{id}")
+    public void deletePerson(@PathVariable String id){
+        personRepository.deletePerson(id);
+    }
+
+    @PutMapping("/person/update")
+    public void updatePerson(@RequestBody UpdatePerson updatePerson){
+        System.out.println(updatePerson);
+        personRepository.updateFeedback(updatePerson.personId(), updatePerson.feedback());
+        personRepository.updateAnswered(updatePerson.personId());
+        personRepository.updateTypeEsg(updatePerson.personId(), updatePerson.typeEsg());
     }
 
 }
