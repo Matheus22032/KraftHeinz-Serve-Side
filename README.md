@@ -1,3 +1,3 @@
-# Project for Innovation Challenge
+# Projeto para o Desafio de Inovação
 
-This API is built using Spring and is used to receive feedback collected by the User-side and store it in a database.
+Esta API é construída usando Spring e é usada para receber feedback coletado pelo lado do usuário e armazená-lo em um banco de dados.
